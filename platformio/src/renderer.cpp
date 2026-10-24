@@ -226,18 +226,25 @@ void initDisplay()
 {
   pinMode(PIN_EPD_PWR, OUTPUT);
   digitalWrite(PIN_EPD_PWR, HIGH);
+  // Arduino 3.x: o GxEPD2 escreve nestes pinos antes do pinMode ("IO 18 is
+  // not set as GPIO"); configurá-los já evita os avisos.
+  pinMode(PIN_EPD_CS, OUTPUT);
+  digitalWrite(PIN_EPD_CS, HIGH);
+  pinMode(PIN_EPD_DC, OUTPUT);
+  pinMode(PIN_EPD_RST, OUTPUT);
+  digitalWrite(PIN_EPD_RST, HIGH);
+  // SPI com os nossos pinos ANTES do display.init: assim o SPI.begin() lá
+  // dentro não arranca com os pinos por omissão do C6 (MISO 20 = BUSY).
+  SPI.begin(PIN_EPD_SCK,
+            PIN_EPD_MISO,
+            PIN_EPD_MOSI,
+            -1);
 #ifdef DRIVER_WAVESHARE
   display.init(115200, true, 2, false);
 #endif
 #ifdef DRIVER_DESPI_C02
   display.init(115200, true, 10, false);
 #endif
-  // remap spi
-  SPI.end();
-  SPI.begin(PIN_EPD_SCK,
-            PIN_EPD_MISO,
-            PIN_EPD_MOSI,
-            PIN_EPD_CS);
 
   display.setRotation(0);
   display.setTextSize(1);

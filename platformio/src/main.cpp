@@ -30,6 +30,7 @@
 #include "display_utils.h"
 #include "icones_usados.h"
 #include "open_meteo.h"
+#include "preparar_ecra.h"
 #include "renderer.h"
 
 #if defined(SENSOR_BME280)
@@ -354,24 +355,14 @@ void setup()
   }
   digitalWrite(PIN_BME_PWR, LOW);
 
-  String refreshTimeStr;
-  getRefreshTimeStr(refreshTimeStr, timeConfigured, &timeInfo);
-  String dateStr;
-  getDateStr(dateStr, &timeInfo);
-
-  // RENDER FULL REFRESH
+  // RENDER FULL REFRESH (desenho novo: 2/3 meteorologia + 1/3 agenda)
+  dados_ecra_t ecra;
+  prepararEcra(ecra, owm_onecall, statusStr, wifiRSSI, batteryVoltage,
+               inTemp, inHumidity);
   initDisplay();
   do
   {
-    drawCurrentConditions(owm_onecall.current, owm_onecall.daily[0],
-                          owm_air_pollution, inTemp, inHumidity);
-    drawOutlookGraph(owm_onecall.hourly, owm_onecall.daily, timeInfo);
-    drawForecast(owm_onecall.daily, timeInfo);
-    drawLocationDate(CITY_STRING, dateStr);
-#if DISPLAY_ALERTS
-    drawAlerts(owm_onecall.alerts, CITY_STRING, dateStr);
-#endif
-    drawStatusBar(statusStr, refreshTimeStr, wifiRSSI, batteryVoltage);
+    desenharEcra(ecra);
   } while (display.nextPage());
   powerOffDisplay();
 

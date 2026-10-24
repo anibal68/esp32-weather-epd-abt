@@ -614,6 +614,56 @@
 #include "icons/64x64/wi_thunderstorm_64x64.h"
 #include "icons/64x64/wi_tornado_64x64.h"
 #include "icons/64x64/wi_volcano_64x64.h"
+#include "icons/128x128/wi_cloud_128x128.h"
+#include "icons/128x128/wi_cloudy_128x128.h"
+#include "icons/128x128/wi_cloudy_gusts_128x128.h"
+#include "icons/128x128/wi_day_cloudy_128x128.h"
+#include "icons/128x128/wi_day_cloudy_gusts_128x128.h"
+#include "icons/128x128/wi_day_fog_128x128.h"
+#include "icons/128x128/wi_day_haze_128x128.h"
+#include "icons/128x128/wi_day_rain_128x128.h"
+#include "icons/128x128/wi_day_rain_mix_128x128.h"
+#include "icons/128x128/wi_day_rain_wind_128x128.h"
+#include "icons/128x128/wi_day_showers_128x128.h"
+#include "icons/128x128/wi_day_sleet_128x128.h"
+#include "icons/128x128/wi_day_snow_128x128.h"
+#include "icons/128x128/wi_day_snow_wind_128x128.h"
+#include "icons/128x128/wi_day_storm_showers_128x128.h"
+#include "icons/128x128/wi_day_sunny_128x128.h"
+#include "icons/128x128/wi_day_sunny_overcast_128x128.h"
+#include "icons/128x128/wi_day_thunderstorm_128x128.h"
+#include "icons/128x128/wi_dust_128x128.h"
+#include "icons/128x128/wi_fog_128x128.h"
+#include "icons/128x128/wi_na_128x128.h"
+#include "icons/128x128/wi_night_alt_cloudy_128x128.h"
+#include "icons/128x128/wi_night_alt_cloudy_gusts_128x128.h"
+#include "icons/128x128/wi_night_alt_partly_cloudy_128x128.h"
+#include "icons/128x128/wi_night_alt_rain_128x128.h"
+#include "icons/128x128/wi_night_alt_rain_mix_128x128.h"
+#include "icons/128x128/wi_night_alt_rain_wind_128x128.h"
+#include "icons/128x128/wi_night_alt_showers_128x128.h"
+#include "icons/128x128/wi_night_alt_sleet_128x128.h"
+#include "icons/128x128/wi_night_alt_snow_128x128.h"
+#include "icons/128x128/wi_night_alt_snow_wind_128x128.h"
+#include "icons/128x128/wi_night_alt_storm_showers_128x128.h"
+#include "icons/128x128/wi_night_alt_thunderstorm_128x128.h"
+#include "icons/128x128/wi_night_clear_128x128.h"
+#include "icons/128x128/wi_night_fog_128x128.h"
+#include "icons/128x128/wi_rain_128x128.h"
+#include "icons/128x128/wi_rain_mix_128x128.h"
+#include "icons/128x128/wi_rain_wind_128x128.h"
+#include "icons/128x128/wi_sandstorm_128x128.h"
+#include "icons/128x128/wi_showers_128x128.h"
+#include "icons/128x128/wi_sleet_128x128.h"
+#include "icons/128x128/wi_smoke_128x128.h"
+#include "icons/128x128/wi_snow_128x128.h"
+#include "icons/128x128/wi_snow_wind_128x128.h"
+#include "icons/128x128/wi_stars_128x128.h"
+#include "icons/128x128/wi_storm_showers_128x128.h"
+#include "icons/128x128/wi_strong_wind_128x128.h"
+#include "icons/128x128/wi_thunderstorm_128x128.h"
+#include "icons/128x128/wi_tornado_128x128.h"
+#include "icons/128x128/wi_volcano_128x128.h"
 #include "icons/196x196/battery_alert_0deg_196x196.h"
 #include "icons/196x196/wi_cloud_196x196.h"
 #include "icons/196x196/wi_cloud_down_196x196.h"
@@ -729,6 +779,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_cloud_32x32;
     case 64: return wi_cloud_64x64;
+    case 128: return wi_cloud_128x128;
     case 196: return wi_cloud_196x196;
     default: return nullptr;
     }
@@ -736,6 +787,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_cloudy_32x32;
     case 64: return wi_cloudy_64x64;
+    case 128: return wi_cloudy_128x128;
     case 196: return wi_cloudy_196x196;
     default: return nullptr;
     }
@@ -743,6 +795,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_cloudy_gusts_32x32;
     case 64: return wi_cloudy_gusts_64x64;
+    case 128: return wi_cloudy_gusts_128x128;
     case 196: return wi_cloudy_gusts_196x196;
     default: return nullptr;
     }
@@ -750,6 +803,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_day_cloudy_32x32;
     case 64: return wi_day_cloudy_64x64;
+    case 128: return wi_day_cloudy_128x128;
     case 196: return wi_day_cloudy_196x196;
     default: return nullptr;
     }
@@ -757,6 +811,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_day_cloudy_gusts_32x32;
     case 64: return wi_day_cloudy_gusts_64x64;
+    case 128: return wi_day_cloudy_gusts_128x128;
     case 196: return wi_day_cloudy_gusts_196x196;
     default: return nullptr;
     }
@@ -764,6 +819,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_day_fog_32x32;
     case 64: return wi_day_fog_64x64;
+    case 128: return wi_day_fog_128x128;
     case 196: return wi_day_fog_196x196;
     default: return nullptr;
     }
@@ -771,6 +827,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_day_haze_32x32;
     case 64: return wi_day_haze_64x64;
+    case 128: return wi_day_haze_128x128;
     case 196: return wi_day_haze_196x196;
     default: return nullptr;
     }
@@ -778,6 +835,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_day_rain_32x32;
     case 64: return wi_day_rain_64x64;
+    case 128: return wi_day_rain_128x128;
     case 196: return wi_day_rain_196x196;
     default: return nullptr;
     }
@@ -785,6 +843,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_day_rain_mix_32x32;
     case 64: return wi_day_rain_mix_64x64;
+    case 128: return wi_day_rain_mix_128x128;
     case 196: return wi_day_rain_mix_196x196;
     default: return nullptr;
     }
@@ -792,6 +851,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_day_rain_wind_32x32;
     case 64: return wi_day_rain_wind_64x64;
+    case 128: return wi_day_rain_wind_128x128;
     case 196: return wi_day_rain_wind_196x196;
     default: return nullptr;
     }
@@ -799,6 +859,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_day_showers_32x32;
     case 64: return wi_day_showers_64x64;
+    case 128: return wi_day_showers_128x128;
     case 196: return wi_day_showers_196x196;
     default: return nullptr;
     }
@@ -806,6 +867,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_day_sleet_32x32;
     case 64: return wi_day_sleet_64x64;
+    case 128: return wi_day_sleet_128x128;
     case 196: return wi_day_sleet_196x196;
     default: return nullptr;
     }
@@ -813,6 +875,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_day_snow_32x32;
     case 64: return wi_day_snow_64x64;
+    case 128: return wi_day_snow_128x128;
     case 196: return wi_day_snow_196x196;
     default: return nullptr;
     }
@@ -820,6 +883,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_day_snow_wind_32x32;
     case 64: return wi_day_snow_wind_64x64;
+    case 128: return wi_day_snow_wind_128x128;
     case 196: return wi_day_snow_wind_196x196;
     default: return nullptr;
     }
@@ -827,6 +891,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_day_storm_showers_32x32;
     case 64: return wi_day_storm_showers_64x64;
+    case 128: return wi_day_storm_showers_128x128;
     case 196: return wi_day_storm_showers_196x196;
     default: return nullptr;
     }
@@ -835,6 +900,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     case 32: return wi_day_sunny_32x32;
     case 48: return wi_day_sunny_48x48;
     case 64: return wi_day_sunny_64x64;
+    case 128: return wi_day_sunny_128x128;
     case 196: return wi_day_sunny_196x196;
     default: return nullptr;
     }
@@ -842,6 +908,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_day_sunny_overcast_32x32;
     case 64: return wi_day_sunny_overcast_64x64;
+    case 128: return wi_day_sunny_overcast_128x128;
     case 196: return wi_day_sunny_overcast_196x196;
     default: return nullptr;
     }
@@ -849,6 +916,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_day_thunderstorm_32x32;
     case 64: return wi_day_thunderstorm_64x64;
+    case 128: return wi_day_thunderstorm_128x128;
     case 196: return wi_day_thunderstorm_196x196;
     default: return nullptr;
     }
@@ -857,6 +925,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     case 32: return wi_dust_32x32;
     case 48: return wi_dust_48x48;
     case 64: return wi_dust_64x64;
+    case 128: return wi_dust_128x128;
     case 196: return wi_dust_196x196;
     default: return nullptr;
     }
@@ -865,6 +934,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     case 32: return wi_fog_32x32;
     case 48: return wi_fog_48x48;
     case 64: return wi_fog_64x64;
+    case 128: return wi_fog_128x128;
     case 196: return wi_fog_196x196;
     default: return nullptr;
     }
@@ -873,6 +943,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     case 32: return wi_na_32x32;
     case 48: return wi_na_48x48;
     case 64: return wi_na_64x64;
+    case 128: return wi_na_128x128;
     case 196: return wi_na_196x196;
     default: return nullptr;
     }
@@ -880,6 +951,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_night_alt_cloudy_32x32;
     case 64: return wi_night_alt_cloudy_64x64;
+    case 128: return wi_night_alt_cloudy_128x128;
     case 196: return wi_night_alt_cloudy_196x196;
     default: return nullptr;
     }
@@ -887,6 +959,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_night_alt_cloudy_gusts_32x32;
     case 64: return wi_night_alt_cloudy_gusts_64x64;
+    case 128: return wi_night_alt_cloudy_gusts_128x128;
     case 196: return wi_night_alt_cloudy_gusts_196x196;
     default: return nullptr;
     }
@@ -894,6 +967,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_night_alt_partly_cloudy_32x32;
     case 64: return wi_night_alt_partly_cloudy_64x64;
+    case 128: return wi_night_alt_partly_cloudy_128x128;
     case 196: return wi_night_alt_partly_cloudy_196x196;
     default: return nullptr;
     }
@@ -901,6 +975,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_night_alt_rain_32x32;
     case 64: return wi_night_alt_rain_64x64;
+    case 128: return wi_night_alt_rain_128x128;
     case 196: return wi_night_alt_rain_196x196;
     default: return nullptr;
     }
@@ -908,6 +983,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_night_alt_rain_mix_32x32;
     case 64: return wi_night_alt_rain_mix_64x64;
+    case 128: return wi_night_alt_rain_mix_128x128;
     case 196: return wi_night_alt_rain_mix_196x196;
     default: return nullptr;
     }
@@ -915,6 +991,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_night_alt_rain_wind_32x32;
     case 64: return wi_night_alt_rain_wind_64x64;
+    case 128: return wi_night_alt_rain_wind_128x128;
     case 196: return wi_night_alt_rain_wind_196x196;
     default: return nullptr;
     }
@@ -922,6 +999,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_night_alt_showers_32x32;
     case 64: return wi_night_alt_showers_64x64;
+    case 128: return wi_night_alt_showers_128x128;
     case 196: return wi_night_alt_showers_196x196;
     default: return nullptr;
     }
@@ -929,6 +1007,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_night_alt_sleet_32x32;
     case 64: return wi_night_alt_sleet_64x64;
+    case 128: return wi_night_alt_sleet_128x128;
     case 196: return wi_night_alt_sleet_196x196;
     default: return nullptr;
     }
@@ -936,6 +1015,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_night_alt_snow_32x32;
     case 64: return wi_night_alt_snow_64x64;
+    case 128: return wi_night_alt_snow_128x128;
     case 196: return wi_night_alt_snow_196x196;
     default: return nullptr;
     }
@@ -943,6 +1023,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_night_alt_snow_wind_32x32;
     case 64: return wi_night_alt_snow_wind_64x64;
+    case 128: return wi_night_alt_snow_wind_128x128;
     case 196: return wi_night_alt_snow_wind_196x196;
     default: return nullptr;
     }
@@ -950,6 +1031,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_night_alt_storm_showers_32x32;
     case 64: return wi_night_alt_storm_showers_64x64;
+    case 128: return wi_night_alt_storm_showers_128x128;
     case 196: return wi_night_alt_storm_showers_196x196;
     default: return nullptr;
     }
@@ -957,6 +1039,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_night_alt_thunderstorm_32x32;
     case 64: return wi_night_alt_thunderstorm_64x64;
+    case 128: return wi_night_alt_thunderstorm_128x128;
     case 196: return wi_night_alt_thunderstorm_196x196;
     default: return nullptr;
     }
@@ -964,6 +1047,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_night_clear_32x32;
     case 64: return wi_night_clear_64x64;
+    case 128: return wi_night_clear_128x128;
     case 196: return wi_night_clear_196x196;
     default: return nullptr;
     }
@@ -971,6 +1055,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_night_fog_32x32;
     case 64: return wi_night_fog_64x64;
+    case 128: return wi_night_fog_128x128;
     case 196: return wi_night_fog_196x196;
     default: return nullptr;
     }
@@ -978,6 +1063,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_rain_32x32;
     case 64: return wi_rain_64x64;
+    case 128: return wi_rain_128x128;
     case 196: return wi_rain_196x196;
     default: return nullptr;
     }
@@ -985,6 +1071,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_rain_mix_32x32;
     case 64: return wi_rain_mix_64x64;
+    case 128: return wi_rain_mix_128x128;
     case 196: return wi_rain_mix_196x196;
     default: return nullptr;
     }
@@ -992,6 +1079,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_rain_wind_32x32;
     case 64: return wi_rain_wind_64x64;
+    case 128: return wi_rain_wind_128x128;
     case 196: return wi_rain_wind_196x196;
     default: return nullptr;
     }
@@ -1000,6 +1088,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     case 32: return wi_sandstorm_32x32;
     case 48: return wi_sandstorm_48x48;
     case 64: return wi_sandstorm_64x64;
+    case 128: return wi_sandstorm_128x128;
     case 196: return wi_sandstorm_196x196;
     default: return nullptr;
     }
@@ -1007,6 +1096,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_showers_32x32;
     case 64: return wi_showers_64x64;
+    case 128: return wi_showers_128x128;
     case 196: return wi_showers_196x196;
     default: return nullptr;
     }
@@ -1014,6 +1104,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_sleet_32x32;
     case 64: return wi_sleet_64x64;
+    case 128: return wi_sleet_128x128;
     case 196: return wi_sleet_196x196;
     default: return nullptr;
     }
@@ -1022,6 +1113,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     case 32: return wi_smoke_32x32;
     case 48: return wi_smoke_48x48;
     case 64: return wi_smoke_64x64;
+    case 128: return wi_smoke_128x128;
     case 196: return wi_smoke_196x196;
     default: return nullptr;
     }
@@ -1029,6 +1121,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_snow_32x32;
     case 64: return wi_snow_64x64;
+    case 128: return wi_snow_128x128;
     case 196: return wi_snow_196x196;
     default: return nullptr;
     }
@@ -1036,6 +1129,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_snow_wind_32x32;
     case 64: return wi_snow_wind_64x64;
+    case 128: return wi_snow_wind_128x128;
     case 196: return wi_snow_wind_196x196;
     default: return nullptr;
     }
@@ -1043,6 +1137,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_stars_32x32;
     case 64: return wi_stars_64x64;
+    case 128: return wi_stars_128x128;
     case 196: return wi_stars_196x196;
     default: return nullptr;
     }
@@ -1050,6 +1145,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_storm_showers_32x32;
     case 64: return wi_storm_showers_64x64;
+    case 128: return wi_storm_showers_128x128;
     case 196: return wi_storm_showers_196x196;
     default: return nullptr;
     }
@@ -1058,6 +1154,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     case 32: return wi_strong_wind_32x32;
     case 48: return wi_strong_wind_48x48;
     case 64: return wi_strong_wind_64x64;
+    case 128: return wi_strong_wind_128x128;
     case 196: return wi_strong_wind_196x196;
     default: return nullptr;
     }
@@ -1065,6 +1162,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     switch (size) {
     case 32: return wi_thunderstorm_32x32;
     case 64: return wi_thunderstorm_64x64;
+    case 128: return wi_thunderstorm_128x128;
     case 196: return wi_thunderstorm_196x196;
     default: return nullptr;
     }
@@ -1073,6 +1171,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     case 32: return wi_tornado_32x32;
     case 48: return wi_tornado_48x48;
     case 64: return wi_tornado_64x64;
+    case 128: return wi_tornado_128x128;
     case 196: return wi_tornado_196x196;
     default: return nullptr;
     }
@@ -1081,6 +1180,7 @@ constexpr const unsigned char* getBitmap(icon_name_t icon, size_t size)
     case 32: return wi_volcano_32x32;
     case 48: return wi_volcano_48x48;
     case 64: return wi_volcano_64x64;
+    case 128: return wi_volcano_128x128;
     case 196: return wi_volcano_196x196;
     default: return nullptr;
     }
