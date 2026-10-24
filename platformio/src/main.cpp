@@ -29,6 +29,7 @@
 #include "config.h"
 #include "display_utils.h"
 #include "icones_usados.h"
+#include "open_meteo.h"
 #include "renderer.h"
 
 #if defined(SENSOR_BME280)
@@ -256,14 +257,18 @@ void setup()
   WiFiClientSecure client;
   client.setInsecure();
 #elif defined(USE_HTTPS_WITH_CERT_VERIF)
+  // Open-Meteo usa Let's Encrypt, cujas raízes mudam: em vez de um certificado
+  // fixo, usa-se o conjunto de raízes que vem com o ESP-IDF (como num browser).
+  extern const uint8_t crt_bundle_ini[] asm("_binary_x509_crt_bundle_start");
+  extern const uint8_t crt_bundle_fim[] asm("_binary_x509_crt_bundle_end");
   WiFiClientSecure client;
-  client.setCACert(cert_Sectigo_Public_Server_Authentication_Root_R46);
+  client.setCACertBundle(crt_bundle_ini, crt_bundle_fim - crt_bundle_ini);
 #endif
-  int rxStatus = getOWMonecall(client, owm_onecall);
+  int rxStatus = getOpenMeteo(client, owm_onecall);
   if (rxStatus != HTTP_CODE_OK)
   {
     killWiFi();
-    statusStr = "One Call " + OWM_ONECALL_VERSION + " API";
+    statusStr = "Open-Meteo";
     tmpStr = String(rxStatus, DEC) + ": " + getHttpResponsePhrase(rxStatus);
     initDisplay();
     do
@@ -273,11 +278,11 @@ void setup()
     powerOffDisplay();
     beginDeepSleep(startTime, &timeInfo);
   }
-  rxStatus = getOWMairpollution(client, owm_air_pollution);
+  rxStatus = getOpenMeteoAr(client, owm_air_pollution);
   if (rxStatus != HTTP_CODE_OK)
   {
     killWiFi();
-    statusStr = "Air Pollution API";
+    statusStr = "Open-Meteo (ar)";
     tmpStr = String(rxStatus, DEC) + ": " + getHttpResponsePhrase(rxStatus);
     initDisplay();
     do

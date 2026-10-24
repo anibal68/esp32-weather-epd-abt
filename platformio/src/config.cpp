@@ -26,21 +26,24 @@
 //       board's pinout to ensure you avoid using a pin with this shared 
 //       functionality.
 //
-// ADC pin used to measure battery voltage
-const uint8_t PIN_BAT_ADC  = A2; // A0 for micro-usb firebeetle
-// Pins for E-Paper Driver Board
-const uint8_t PIN_EPD_BUSY = 14; // 5 for micro-usb firebeetle
-const uint8_t PIN_EPD_CS   = 13;
-const uint8_t PIN_EPD_RST  = 21;
+// Aníbal: ESP32-C6 Super Mini (pinos combinados a 23/10/2026). Evitar 4, 5,
+// 8, 9, 15 (arranque/LED/BOOT), 12, 13 (USB) e 16, 17 (série).
+//
+// ADC pin used to measure battery voltage (C6: só GPIO0-6 têm ADC)
+const uint8_t PIN_BAT_ADC  = 0; // divisor 1M+1M + 100nF
+// Pins for E-Paper Driver Board (Waveshare)
+const uint8_t PIN_EPD_BUSY = 20;
+const uint8_t PIN_EPD_CS   = 18;
+const uint8_t PIN_EPD_RST  = 23;
 const uint8_t PIN_EPD_DC   = 22;
-const uint8_t PIN_EPD_SCK  = 18;
-const uint8_t PIN_EPD_MISO = 19; // 19 Master-In Slave-Out not used, as no data from display
-const uint8_t PIN_EPD_MOSI = 23;
-const uint8_t PIN_EPD_PWR  = 26; // Irrelevant if directly connected to 3.3V
+const uint8_t PIN_EPD_SCK  = 21;
+const uint8_t PIN_EPD_MISO = 255; // não usado (-1 para o SPI): o ecrã não envia dados
+const uint8_t PIN_EPD_MOSI = 19;
+const uint8_t PIN_EPD_PWR  = 7;  // Irrelevant if directly connected to 3.3V
 // I2C Pins used for BME280
-const uint8_t PIN_BME_SDA = 17;
-const uint8_t PIN_BME_SCL = 16;
-const uint8_t PIN_BME_PWR =  4;   // Irrelevant if directly connected to 3.3V
+const uint8_t PIN_BME_SDA = 2;
+const uint8_t PIN_BME_SCL = 3;
+const uint8_t PIN_BME_PWR = 1;   // Irrelevant if directly connected to 3.3V
 const uint8_t BME_ADDRESS = 0x76; // 0x76 if SDO -> GND; 0x77 if SDO -> VCC
 
 // WIFI
@@ -79,15 +82,18 @@ const String OWM_ONECALL_VERSION = "3.0";
 // LOCATION
 // Set your latitude and longitude.
 // (used to get weather data as part of API requests to OpenWeatherMap)
-const String LAT = "40.7128";
-const String LON = "-74.0060";
+// (meteorologia: Open-Meteo, sem chave)
+const String LAT = "41.55";
+const String LON = "-8.42";
 // City name that will be shown in the top-right corner of the display.
-const String CITY_STRING = "New York";
+const String CITY_STRING = "Braga";
 
 // TIME
 // For list of time zones see
 // https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv
-const char *TIMEZONE = "EST5EDT,M3.2.0,M11.1.0";
+const char *TIMEZONE = "WET0WEST,M3.5.0/1,M10.5.0";
+// Fuso horário para o Open-Meteo (nome IANA, com a / escrita %2F)
+const String OM_TIMEZONE = "Europe%2FLisbon";
 // Time format used when displaying sunrise/set times. (Max 11 characters)
 // For more information about formatting see
 // https://man7.org/linux/man-pages/man3/strftime.3.html
