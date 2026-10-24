@@ -19,4 +19,9 @@ Repositório PÚBLICO. Wi-Fi e chaves em `platformio/src/config.cpp`: nunca faze
 
 - Bateria: `analogReadMilliVolts()` (o ADC antigo não existe no 3.x), x2 pelo divisor.
 - LED: no C6 desliga-se o GPIO15 (LED azul do Super Mini); `LED_BUILTIN` é o RGB do GPIO8.
-- Pinos do Aníbal (ainda por pôr no `config.cpp`): ver a nota da estação na memória do Claude.
+- Pinos no `config.cpp` desde 24/10/2026: MOSI 19, SCK 21, CS 18, DC 22, RST 23, BUSY 20, EPD_PWR 7,
+  bateria GPIO0 (divisor 1M+1M), BME280 SDA 2 / SCL 3 / PWR 1. Braga, `WET0WEST`, `pt_PT`, métrico.
+- Meteorologia: `src/open_meteo.cpp` (Open-Meteo, sem chave) põe os dados nas estruturas `owm_*`
+  em kelvin e m/s, como o OWM "standard". Sem nascer/pôr da lua; fase da lua calculada.
+  HTTPS com o conjunto de raízes do ESP-IDF (`_binary_x509_crt_bundle_start`).
+- Avisos do IPMA: por fazer (`r.alerts` vazio).
