@@ -24,4 +24,6 @@ Repositório PÚBLICO. Wi-Fi e chaves em `platformio/src/config.cpp`: nunca faze
 - Meteorologia: `src/open_meteo.cpp` (Open-Meteo, sem chave) põe os dados nas estruturas `owm_*`
   em kelvin e m/s, como o OWM "standard". Sem nascer/pôr da lua; fase da lua calculada.
   HTTPS com o conjunto de raízes do ESP-IDF (`_binary_x509_crt_bundle_start`).
-- Avisos do IPMA: por fazer (`r.alerts` vazio).
+- Avisos do IPMA (`src/ipma.cpp`, zona `IPMA_AREA` = BRG): só não verdes e não terminados, "Aviso laranja: Vento";
+  urgência e ícones pelas palavras em `locale_pt_PT.inc`. Horas do IPMA lidas como hora de Portugal (a confirmar
+  num dia com aviso, no verão). Se o IPMA falhar, mostra o resto sem avisos.

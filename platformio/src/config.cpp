@@ -87,6 +87,8 @@ const String LAT = "41.55";
 const String LON = "-8.42";
 // City name that will be shown in the top-right corner of the display.
 const String CITY_STRING = "Braga";
+// Zona dos avisos do IPMA (idAreaAviso: BRG = Braga, VCT = Viana do Castelo...)
+const String IPMA_AREA = "BRG";
 
 // TIME
 // For list of time zones see

@@ -292,6 +292,10 @@ void setup()
     powerOffDisplay();
     beginDeepSleep(startTime, &timeInfo);
   }
+#if DISPLAY_ALERTS
+  // avisos do IPMA: se falhar, a estação mostra o resto sem avisos
+  getIpmaAvisos(client, owm_onecall.alerts);
+#endif
   killWiFi(); // WiFi no longer needed
 
   // GET INDOOR TEMPERATURE AND HUMIDITY, start BMEx80...

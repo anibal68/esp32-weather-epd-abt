@@ -12,5 +12,9 @@
 
 int getOpenMeteo(WiFiClientSecure &client, owm_resp_onecall_t &r);
 int getOpenMeteoAr(WiFiClientSecure &client, owm_resp_air_pollution_t &r);
+int getIpmaAvisos(WiFiClientSecure &client, std::vector<owm_alerts_t> &alerts);
+
+int pedirJson(WiFiClientSecure &client, const char *host, const String &uri,
+              JsonDocument &doc, JsonDocument *filtro = nullptr);
 
 #endif

@@ -196,64 +196,38 @@ const char *TXT_CRIT_LOW_BATTERY_VOLTAGE = "Tens\343o da bateria criticamente ba
 //
 // Here are a few examples, uncomment the array for your region (or create your
 // own).
-const std::vector<String> ALERT_URGENCY = {"outlook", "statement", "watch", "advisory", "warning", "emergency"}; // US National Weather Service
-// const std::vector<String> ALERT_URGENCY = {"yellow", "amber", "red"};                 // United Kingdom's national weather service (MET Office)
-// const std::vector<String> ALERT_URGENCY = {"minor", "moderate", "severe", "extreme"}; // METEO
-// const std::vector<String> ALERT_URGENCY = {}; // Disable urgency interpretation (algorithm will fallback to only prefer the most recently issued alerts)
+// Avisos do IPMA (src/ipma.cpp): "Aviso laranja: Vento". Cores do IPMA, da
+// menos para a mais urgente.
+const std::vector<String> ALERT_URGENCY = {"amarelo", "laranja", "vermelho"};
 
 // ALERT TERMINOLOGY
-// Weather terminology associated with each alert icon
-const std::vector<String> TERM_SMOG =
-    {"smog"};
-const std::vector<String> TERM_SMOKE =
-    {"smoke"};
-const std::vector<String> TERM_FOG =
-    {"fog", "haar"};
-const std::vector<String> TERM_METEOR =
-    {"meteor", "asteroid"};
-const std::vector<String> TERM_NUCLEAR =
-    {"nuclear", "ionizing radiation"};
-const std::vector<String> TERM_BIOHAZARD =
-    {"biohazard", "biological hazard"};
-const std::vector<String> TERM_EARTHQUAKE =
-    {"earthquake"};
-const std::vector<String> TERM_FIRE =
-    {"fire", "red flag"};
-const std::vector<String> TERM_HEAT =
-    {"heat"};
-const std::vector<String> TERM_WINTER =
-    {"blizzard", "winter", "ice", "icy", "snow", "sleet", "cold",
-     "freezing rain", "wind chill", "freeze", "frost", "hail"};
-const std::vector<String> TERM_TSUNAMI =
-    {"tsunami", "surf"};
-const std::vector<String> TERM_LIGHTNING =
-    {"thunderstorm", "storm cell", "pulse storm", "squall line", "supercell",
-     "lightning"};
-const std::vector<String> TERM_SANDSTORM =
-    {"sandstorm", "blowing dust", "dust storm"};
-const std::vector<String> TERM_FLOOD =
-    {"flood", "storm surge", "seiche", "swell", "high seas", "high tides",
-     "tidal surge", "hydrologic"};
-const std::vector<String> TERM_VOLCANO =
-    {"volcanic", "ash", "volcano", "eruption"};
-const std::vector<String> TERM_AIR_QUALITY =
-    {"air", "stagnation", "pollution"};
-const std::vector<String> TERM_TORNADO =
-    {"tornado"};
-const std::vector<String> TERM_SMALL_CRAFT_ADVISORY =
-    {"small craft", "wind advisory"};
-const std::vector<String> TERM_GALE_WARNING =
-    {"gale"};
-const std::vector<String> TERM_STORM_WARNING =
-    {"storm warning"};
-const std::vector<String> TERM_HURRICANE_WARNING =
-    {"hurricane force wind", "extreme wind", "high wind"};
-const std::vector<String> TERM_HURRICANE =
-    {"hurricane", "tropical storm", "typhoon", "cyclone"};
-const std::vector<String> TERM_DUST =
-    {"dust", "sand"};
-const std::vector<String> TERM_STRONG_WIND =
-    {"wind", "monsoon"};
+// Palavras (em minúsculas, Latin-1) dos tipos de aviso do IPMA que escolhem o
+// ícone. Os tipos são: Vento, Precipitação, Trovoada, Nevoeiro, Neve,
+// Tempo Quente, Tempo Frio e Agitação Marítima.
+const std::vector<String> TERM_SMOG = {};
+const std::vector<String> TERM_SMOKE = {};
+const std::vector<String> TERM_FOG = {"nevoeiro"};
+const std::vector<String> TERM_METEOR = {};
+const std::vector<String> TERM_NUCLEAR = {};
+const std::vector<String> TERM_BIOHAZARD = {};
+const std::vector<String> TERM_EARTHQUAKE = {};
+const std::vector<String> TERM_FIRE = {"inc\352ndio"};
+const std::vector<String> TERM_HEAT = {"quente"};
+const std::vector<String> TERM_WINTER = {"neve", "frio"};
+const std::vector<String> TERM_TSUNAMI = {"agita\347\343o mar\355tima"};
+const std::vector<String> TERM_LIGHTNING = {"trovoada"};
+const std::vector<String> TERM_SANDSTORM = {};
+const std::vector<String> TERM_FLOOD = {"precipita\347\343o"};
+const std::vector<String> TERM_VOLCANO = {};
+const std::vector<String> TERM_AIR_QUALITY = {};
+const std::vector<String> TERM_TORNADO = {};
+const std::vector<String> TERM_SMALL_CRAFT_ADVISORY = {};
+const std::vector<String> TERM_GALE_WARNING = {};
+const std::vector<String> TERM_STORM_WARNING = {};
+const std::vector<String> TERM_HURRICANE_WARNING = {};
+const std::vector<String> TERM_HURRICANE = {};
+const std::vector<String> TERM_DUST = {};
+const std::vector<String> TERM_STRONG_WIND = {"vento"};
 
 // AIR QUALITY INDEX
 extern "C" {

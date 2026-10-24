@@ -72,10 +72,11 @@ static float faseDaLua(int64_t t)
 }
 
 /* Pedido GET e leitura do JSON, com 3 tentativas como no código original.
+ * filtro (opcional): só guarda os campos marcados (poupa memória).
  * Devolve o código HTTP (ou os mesmos códigos negativos do original).
  */
-static int pedirJson(WiFiClientSecure &client, const char *host,
-                     const String &uri, JsonDocument &doc)
+int pedirJson(WiFiClientSecure &client, const char *host,
+              const String &uri, JsonDocument &doc, JsonDocument *filtro)
 {
   Serial.print(TXT_ATTEMPTING_HTTP_REQ);
   Serial.println(": " + String(host) + uri);
@@ -98,7 +99,10 @@ static int pedirJson(WiFiClientSecure &client, const char *host,
     httpResponse = http.GET();
     if (httpResponse == HTTP_CODE_OK)
     {
-      DeserializationError jsonErr = deserializeJson(doc, http.getStream());
+      DeserializationError jsonErr = filtro
+        ? deserializeJson(doc, http.getStream(),
+                          DeserializationOption::Filter(*filtro))
+        : deserializeJson(doc, http.getStream());
       if (jsonErr)
       {
         // -256 offset distinguishes these errors from httpClient errors
@@ -218,7 +222,7 @@ int getOpenMeteo(WiFiClientSecure &client, owm_resp_onecall_t &r)
   x.weather.id   = wmoParaOwm(c["weather_code"].as<int>());
   x.weather.icon = c["is_day"].as<int>() ? "01d" : "01n";
 
-  r.alerts.clear(); // avisos do IPMA: passo seguinte
+  r.alerts.clear(); // os avisos vêm do IPMA (src/ipma.cpp)
   return httpResponse;
 } // end getOpenMeteo
 

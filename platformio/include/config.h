@@ -343,6 +343,7 @@ extern const String OWM_ONECALL_VERSION;
 extern const String LAT;
 extern const String LON;
 extern const String CITY_STRING;
+extern const String IPMA_AREA;
 extern const char *TIMEZONE;
 extern const String OM_TIMEZONE;
 extern const char *TIME_FORMAT;
