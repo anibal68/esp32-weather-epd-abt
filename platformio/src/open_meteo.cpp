@@ -95,6 +95,9 @@ int pedirJson(WiFiClientSecure &client, const char *host,
     HTTPClient http;
     http.setConnectTimeout(HTTP_CLIENT_TCP_TIMEOUT);
     http.setTimeout(HTTP_CLIENT_TCP_TIMEOUT);
+    // HTTP/1.0: sem isto o Open-Meteo responde em blocos ("chunked") e o
+    // deserializeJson lê os tamanhos dos blocos como se fossem JSON (-259)
+    http.useHTTP10(true);
     http.begin(client, host, 443, uri);
     httpResponse = http.GET();
     if (httpResponse == HTTP_CODE_OK)
