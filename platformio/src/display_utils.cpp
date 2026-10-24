@@ -40,8 +40,8 @@ uint32_t readBatteryVoltage()
 {
 #if ESP_ARDUINO_VERSION_MAJOR >= 3
   // Arduino 3.x (ESP32-C6): o ADC antigo já não existe; analogReadMilliVolts
-  // usa a calibração da eFuse. Divisor 1M+1M, por isso x2.
-  analogSetPinAttenuation(PIN_BAT_ADC, ADC_11db);
+  // usa a calibração da eFuse. Divisor 1M+1M, por isso x2. A atenuação já é
+  // 11 dB por omissão (configurá-la antes da 1.ª leitura dava um aviso).
   return analogReadMilliVolts(PIN_BAT_ADC) * 2;
 #else
   esp_adc_cal_characteristics_t adc_chars;

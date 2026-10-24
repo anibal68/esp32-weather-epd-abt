@@ -102,10 +102,13 @@ int pedirJson(WiFiClientSecure &client, const char *host,
     httpResponse = http.GET();
     if (httpResponse == HTTP_CODE_OK)
     {
+      // Primeiro a resposta inteira, depois o JSON: lida diretamente da rede
+      // (getStream) a do IPMA (34 KB) acabava a meio com o Wi-Fi fraco (-258).
+      String corpo = http.getString();
+      Serial.println("  " + String(corpo.length()) + " bytes");
       DeserializationError jsonErr = filtro
-        ? deserializeJson(doc, http.getStream(),
-                          DeserializationOption::Filter(*filtro))
-        : deserializeJson(doc, http.getStream());
+        ? deserializeJson(doc, corpo, DeserializationOption::Filter(*filtro))
+        : deserializeJson(doc, corpo);
       if (jsonErr)
       {
         // -256 offset distinguishes these errors from httpClient errors
