@@ -144,6 +144,14 @@ void setup()
   uint32_t batteryVoltage = readBatteryVoltage();
   Serial.print(TXT_BATTERY_VOLTAGE);
   Serial.println(": " + String(batteryVoltage) + "mv");
+  if (batteryVoltage < 2500)
+  {
+    // Abaixo do possível para uma LiPo ligada: divisor não montado (GPIO0 no
+    // ar) ou sem bateria. Segue como se não houvesse medição, para não ficar
+    // a dormir para sempre por "bateria vazia".
+    Serial.println("Sem medida da bateria (divisor no GPIO0?)");
+    batteryVoltage = UINT32_MAX;
+  }
 
   // When the battery is low, the display should be updated to reflect that, but
   // only the first time we detect low voltage. The next time the display will

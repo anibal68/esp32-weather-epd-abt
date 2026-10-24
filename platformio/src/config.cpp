@@ -17,6 +17,7 @@
 
 #include <Arduino.h>
 #include "config.h"
+#include "segredos.h"
 
 // PINS
 // The configuration below is intended for use with the project's official 
@@ -47,8 +48,9 @@ const uint8_t PIN_BME_PWR = 1;   // Irrelevant if directly connected to 3.3V
 const uint8_t BME_ADDRESS = 0x76; // 0x76 if SDO -> GND; 0x77 if SDO -> VCC
 
 // WIFI
-const char *WIFI_SSID     = "ssid";
-const char *WIFI_PASSWORD = "password";
+// Wi-Fi em include/segredos.h (fora do git; modelo em segredos.h.exemplo)
+const char *WIFI_SSID     = SEGREDO_WIFI_SSID;
+const char *WIFI_PASSWORD = SEGREDO_WIFI_PASSWORD;
 const unsigned long WIFI_TIMEOUT = 10000; // ms, WiFi connection timeout.
 
 // HTTP

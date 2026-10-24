@@ -1,0 +1,4 @@
+// Copiar para segredos.h (fora do git, ver .gitignore) e preencher.
+// O repositório é PÚBLICO: nunca pôr valores reais neste ficheiro de exemplo.
+#define SEGREDO_WIFI_SSID     "nome-da-rede"
+#define SEGREDO_WIFI_PASSWORD "palavra-passe"
