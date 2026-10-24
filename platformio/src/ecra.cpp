@@ -68,7 +68,7 @@ static void desenharAgora(const dados_ecra_t &d)
   drawString(146, 122, "Sensa\347\343o " + String(d.sensacao) + "\260", LEFT);
   drawString(146, 150, caber(d.descricao, ESQ_1 - 146), LEFT);
 
-  const int xInfo = 335, xValor = 416;
+  const int xInfo = 335, xValor = 420;
   display.setFont(&FONT_14pt8b);
   negrito(xInfo, 34, caber(d.local, ESQ_1 - xInfo, true), LEFT);
   const char *nomes[4] = {"Vento", "Humidade", "Sol", "Casa"};

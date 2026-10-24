@@ -115,10 +115,18 @@ void prepararEcra(dados_ecra_t &d, const owm_resp_onecall_t &r,
              + String(static_cast<int>(std::round(inHumidity))) + " %";
   }
 
+  // nomes contados a partir de hoje: na mudança da hora (25/10/2026) a hora
+  // de início de um dia vinda do Open-Meteo caía no dia anterior ("Dom, Dom")
+  time_t agora = time(nullptr);
+  tm hoje = *localtime(&agora);
   for (int i = 0; i < 5; ++i)
   {
     const owm_daily_t &dia = r.daily[i];
-    d.dias[i].nome    = (i == 0) ? String("Hoje") : hora(dia.dt, "%a");
+    tm t = hoje;
+    t.tm_wday = (hoje.tm_wday + i) % 7;
+    char nome[8] = {};
+    _strftime(nome, sizeof(nome), "%a", &t);
+    d.dias[i].nome    = (i == 0) ? String("Hoje") : String(nome);
     d.dias[i].icone64 = getDailyForecastBitmap64(dia);
     d.dias[i].max     = graus(dia.temp.max);
     d.dias[i].min     = graus(dia.temp.min);
