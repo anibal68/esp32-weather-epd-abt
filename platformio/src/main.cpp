@@ -28,7 +28,7 @@
 #include "client_utils.h"
 #include "config.h"
 #include "display_utils.h"
-#include "icons/icons_196x196.h"
+#include "icones_usados.h"
 #include "renderer.h"
 
 #if defined(SENSOR_BME280)

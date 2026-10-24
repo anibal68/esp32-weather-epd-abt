@@ -27,15 +27,7 @@
 #include FONT_HEADER
 
 // icon header files
-#include "icons/icons_16x16.h"
-#include "icons/icons_24x24.h"
-#include "icons/icons_32x32.h"
-#include "icons/icons_48x48.h"
-#include "icons/icons_64x64.h"
-#include "icons/icons_96x96.h"
-#include "icons/icons_128x128.h"
-#include "icons/icons_160x160.h"
-#include "icons/icons_196x196.h"
+#include "icones_usados.h"
 
 #ifdef DISP_BW_V2
   GxEPD2_BW<GxEPD2_750_GDEY075T7,

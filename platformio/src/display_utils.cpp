@@ -18,8 +18,10 @@
 #include <cmath>
 #include <vector>
 #include <Arduino.h>
+#if ESP_ARDUINO_VERSION_MAJOR < 3
 #include <driver/adc.h>
 #include <esp_adc_cal.h>
+#endif
 
 #include <aqi.h>
 
@@ -30,12 +32,18 @@
 #include "display_utils.h"
 
 // icon header files
-#include "icons/icons.h"
+#include "icones_usados.h"
 
 /* Returns battery voltage in millivolts (mv).
  */
 uint32_t readBatteryVoltage()
 {
+#if ESP_ARDUINO_VERSION_MAJOR >= 3
+  // Arduino 3.x (ESP32-C6): o ADC antigo já não existe; analogReadMilliVolts
+  // usa a calibração da eFuse. Divisor 1M+1M, por isso x2.
+  analogSetPinAttenuation(PIN_BAT_ADC, ADC_11db);
+  return analogReadMilliVolts(PIN_BAT_ADC) * 2;
+#else
   esp_adc_cal_characteristics_t adc_chars;
   // __attribute__((unused)) disables compiler warnings about this variable
   // being unused (Clang, GCC) which is the case when DEBUG_LEVEL == 0.
@@ -71,6 +79,7 @@ uint32_t readBatteryVoltage()
   // multiplied by 2.
   batteryVoltage *= 2;
   return batteryVoltage;
+#endif
 } // end readBatteryVoltage
 
 /* Returns battery percentage, rounded to the nearest integer.
@@ -1524,10 +1533,17 @@ const char *getWifiStatusPhrase(wl_status_t status)
  */
 void disableBuiltinLED()
 {
+#if CONFIG_IDF_TARGET_ESP32C6
+  // C6 Super Mini: LED azul no GPIO15 (o LED_BUILTIN da placa é o RGB do
+  // GPIO8, pino de arranque). Em sono profundo o pino fica sem alimentação.
+  pinMode(15, OUTPUT);
+  digitalWrite(15, LOW);
+#else
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
   gpio_hold_en(static_cast<gpio_num_t>(LED_BUILTIN));
   gpio_deep_sleep_hold_en();
+#endif
   return;
 } // end disableBuiltinLED
 
