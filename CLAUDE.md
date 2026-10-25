@@ -27,3 +27,11 @@ Repositório PÚBLICO. Wi-Fi e chaves em `platformio/src/config.cpp`: nunca faze
 - Avisos do IPMA (`src/ipma.cpp`, zona `IPMA_AREA` = BRG): só não verdes e não terminados, "Aviso laranja: Vento";
   urgência e ícones pelas palavras em `locale_pt_PT.inc`. Horas do IPMA lidas como hora de Portugal (a confirmar
   num dia com aviso, no verão). Se o IPMA falhar, mostra o resto sem avisos.
+
+## Desenho e agenda (24-25/10/2026)
+
+- Desenho: `src/ecra.cpp` (só textos prontos, em Latin-1) + `src/preparar_ecra.cpp`; simulador no Pi
+  `platformio/simulador/simular.sh` (PNG + procura de sobreposições) antes de gravar.
+- Agenda da Mariana: `src/agenda.cpp` procura o Pi por mDNS (`AGENDA_PI` = rpi4, `AGENDA_PORTA` 8090 no
+  `config.cpp`) e lê `agenda.json`, preparado no Pi por `~/accoes/app/agenda_estacao.py` (cron 30 min,
+  serviço do utilizador `estacao-agenda`, só rede de casa). Com mais de 3 h ou `ok: false` -> "Agenda indisponível".

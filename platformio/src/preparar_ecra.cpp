@@ -158,7 +158,7 @@ void prepararEcra(dados_ecra_t &d, const owm_resp_onecall_t &r,
     d.bateriaFraca = batVoltage < WARN_BATTERY_VOLTAGE;
   }
 
-  // a agenda da Mariana vem do Pi (passo 3); por agora fica indisponível
+  // a agenda da Mariana vem do Pi (agenda.cpp); o main.cpp preenche-a
   d.agendaOk = false;
   d.agenda.clear();
 }

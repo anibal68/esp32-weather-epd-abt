@@ -24,6 +24,7 @@
 #include <Wire.h>
 
 #include "_locale.h"
+#include "agenda.h"
 #include "api_response.h"
 #include "client_utils.h"
 #include "config.h"
@@ -305,6 +306,9 @@ void setup()
   // avisos do IPMA: se falhar, a estação mostra o resto sem avisos
   getIpmaAvisos(client, owm_onecall.alerts);
 #endif
+  // agenda da Mariana, do Pi; se falhar mostra "Agenda indisponível"
+  std::vector<dia_agenda_t> agenda;
+  bool agendaOk = getAgenda(agenda);
   killWiFi(); // WiFi no longer needed
 
   // GET INDOOR TEMPERATURE AND HUMIDITY, start BMEx80...
@@ -359,6 +363,8 @@ void setup()
   dados_ecra_t ecra;
   prepararEcra(ecra, owm_onecall, statusStr, wifiRSSI, batteryVoltage,
                inTemp, inHumidity);
+  ecra.agendaOk = agendaOk;
+  ecra.agenda   = agenda;
   initDisplay();
   do
   {

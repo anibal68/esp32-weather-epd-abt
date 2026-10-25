@@ -91,6 +91,10 @@ const String LON = "-8.42";
 const String CITY_STRING = "Braga";
 // Zona dos avisos do IPMA (idAreaAviso: BRG = Braga, VCT = Viana do Castelo...)
 const String IPMA_AREA = "BRG";
+// Agenda da Mariana: o Pi (nome na rede de casa, sem ".local") serve-a na porta
+// AGENDA_PORTA (~/accoes/app/agenda_estacao.py, serviço estacao-agenda)
+const char *AGENDA_PI = "rpi4";
+const uint16_t AGENDA_PORTA = 8090;
 
 // TIME
 // For list of time zones see

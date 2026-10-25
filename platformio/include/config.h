@@ -344,6 +344,8 @@ extern const String LAT;
 extern const String LON;
 extern const String CITY_STRING;
 extern const String IPMA_AREA;
+extern const char *AGENDA_PI;
+extern const uint16_t AGENDA_PORTA;
 extern const char *TIMEZONE;
 extern const String OM_TIMEZONE;
 extern const char *TIME_FORMAT;
