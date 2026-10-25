@@ -33,12 +33,16 @@
 #include "open_meteo.h"
 #include "preparar_ecra.h"
 #include "renderer.h"
+#include "servidor.h"
 
 #if defined(SENSOR_BME280)
   #include <Adafruit_BME280.h>
 #endif
 #if defined(SENSOR_BME680)
   #include <Adafruit_BME680.h>
+#endif
+#if defined(SENSOR_AHT10)
+  #include <Adafruit_AHTX0.h>
 #endif
 #if defined(USE_HTTPS_WITH_CERT_VERIF) || defined(USE_HTTPS_WITH_CERT_VERIF)
   #include <WiFiClientSecure.h>
@@ -309,6 +313,8 @@ void setup()
   // agenda da Mariana, do Pi; se falhar mostra "Agenda indisponível"
   std::vector<dia_agenda_t> agenda;
   bool agendaOk = getAgenda(agenda);
+  // atualização por Wi-Fi: se houver versão nova, instala-a e reinicia aqui
+  verificarAtualizacao();
   killWiFi(); // WiFi no longer needed
 
   // GET INDOOR TEMPERATURE AND HUMIDITY, start BMEx80...
@@ -335,8 +341,20 @@ void setup()
   if(bme.begin(BME_ADDRESS))
   {
 #endif
+#if defined(SENSOR_AHT10)
+  Serial.print(String(TXT_READING_FROM) + " AHT10... ");
+  Adafruit_AHTX0 aht;
+
+  if(aht.begin(&I2C_bme, 0, BME_ADDRESS))
+  {
+    sensors_event_t humidade, temperatura;
+    aht.getEvent(&humidade, &temperatura);
+    inTemp     = temperatura.temperature;    // Celsius
+    inHumidity = humidade.relative_humidity; // %
+#else
     inTemp     = bme.readTemperature(); // Celsius
     inHumidity = bme.readHumidity();    // %
+#endif
 
     // check if BME readings are valid
     // note: readings are checked again before drawing to screen. If a reading
@@ -344,7 +362,7 @@ void setup()
     //       displayed.
     if (std::isnan(inTemp) || std::isnan(inHumidity))
     {
-      statusStr = "BME " + String(TXT_READ_FAILED);
+      statusStr = "Sensor " + String(TXT_READ_FAILED);
       Serial.println(statusStr);
     }
     else
@@ -354,7 +372,7 @@ void setup()
   }
   else
   {
-    statusStr = "BME " + String(TXT_NOT_FOUND); // check wiring
+    statusStr = "Sensor " + String(TXT_NOT_FOUND); // check wiring
     Serial.println(statusStr);
   }
   digitalWrite(PIN_BME_PWR, LOW);

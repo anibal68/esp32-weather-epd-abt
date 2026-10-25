@@ -45,12 +45,22 @@ const uint8_t PIN_EPD_PWR  = 7;  // Irrelevant if directly connected to 3.3V
 const uint8_t PIN_BME_SDA = 2;
 const uint8_t PIN_BME_SCL = 3;
 const uint8_t PIN_BME_PWR = 1;   // Irrelevant if directly connected to 3.3V
-const uint8_t BME_ADDRESS = 0x76; // 0x76 if SDO -> GND; 0x77 if SDO -> VCC
+// AHT10: 0x38 (0x39 se a resistência passar para o lado "0x39" da placa)
+// BME280: 0x76 if SDO -> GND; 0x77 if SDO -> VCC
+const uint8_t BME_ADDRESS = 0x38;
 
 // WIFI
 // Wi-Fi em include/segredos.h (fora do git; modelo em segredos.h.exemplo)
-const char *WIFI_SSID     = SEGREDO_WIFI_SSID;
-const char *WIFI_PASSWORD = SEGREDO_WIFI_PASSWORD;
+const wifi_rede_t WIFI_REDES[] = {
+  {SEGREDO_WIFI_SSID, SEGREDO_WIFI_PASSWORD},
+#ifdef SEGREDO_WIFI2_SSID
+  {SEGREDO_WIFI2_SSID, SEGREDO_WIFI2_PASSWORD},
+#endif
+#ifdef SEGREDO_WIFI3_SSID
+  {SEGREDO_WIFI3_SSID, SEGREDO_WIFI3_PASSWORD},
+#endif
+};
+const int WIFI_N_REDES = sizeof(WIFI_REDES) / sizeof(WIFI_REDES[0]);
 const unsigned long WIFI_TIMEOUT = 10000; // ms, WiFi connection timeout.
 
 // HTTP
@@ -91,10 +101,16 @@ const String LON = "-8.42";
 const String CITY_STRING = "Braga";
 // Zona dos avisos do IPMA (idAreaAviso: BRG = Braga, VCT = Viana do Castelo...)
 const String IPMA_AREA = "BRG";
-// Agenda da Mariana: o Pi (nome na rede de casa, sem ".local") serve-a na porta
-// AGENDA_PORTA (~/accoes/app/agenda_estacao.py, serviço estacao-agenda)
-const char *AGENDA_PI = "rpi4";
-const uint16_t AGENDA_PORTA = 8090;
+// Servidor da estação no Pi, pelo Cloudflare (funciona em qualquer casa):
+// agenda da Mariana (~/accoes/app/agenda_estacao.py) e atualizações por Wi-Fi
+// (publicar_ota.sh). Service Token no segredos.h.
+const char *SERVIDOR = "estacao.ablabs.win";
+#ifndef SEGREDO_CF_ID
+  #define SEGREDO_CF_ID      ""
+  #define SEGREDO_CF_SEGREDO ""
+#endif
+const char *CF_ID      = SEGREDO_CF_ID;
+const char *CF_SEGREDO = SEGREDO_CF_SEGREDO;
 
 // TIME
 // For list of time zones see

@@ -120,7 +120,7 @@ static void exemplo(dados_ecra_t &d, bool extremo)
     d.chuvaHora[i] = extremo ? 100 : c[i];
     char b[4]; snprintf(b, sizeof b, "%02d", (18 + i) % 24); d.etiquetaHora[i] = b;
   }
-  d.estado = extremo ? "BME n\343o encontrado e outra mensagem comprida" : "BME n\343o encontrado";
+  d.estado = extremo ? "Sensor n\343o encontrado e outra mensagem comprida" : "Sensor n\343o encontrado";
   d.atualizado = "s\341b 18:19";
   d.wifi = extremo ? "Wi-Fi fraco" : "Wi-Fi bom";
   d.wifiFraco = extremo;

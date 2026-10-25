@@ -49,7 +49,11 @@
   static const uint16_t OWM_PORT = 443;
 #endif
 
+// última rede que funcionou (guardada durante o sono profundo)
+RTC_DATA_ATTR static int redeAtual = 0;
+
 /* Power-on and connect WiFi.
+ * Tenta as redes do segredos.h, a começar pela última que funcionou.
  * Takes int parameter to store WiFi RSSI, or “Received Signal Strength
  * Indicator"
  *
@@ -58,30 +62,41 @@
 wl_status_t startWiFi(int &wifiRSSI)
 {
   WiFi.mode(WIFI_STA);
-  Serial.printf("%s '%s'", TXT_CONNECTING_TO, WIFI_SSID);
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-
-  // timeout if WiFi does not connect in WIFI_TIMEOUT ms from now
-  unsigned long timeout = millis() + WIFI_TIMEOUT;
-  wl_status_t connection_status = WiFi.status();
-
-  while ((connection_status != WL_CONNECTED) && (millis() < timeout))
+  wl_status_t connection_status = WL_DISCONNECTED;
+  if (redeAtual >= WIFI_N_REDES)
   {
-    Serial.print(".");
-    delay(50);
+    redeAtual = 0;
+  }
+
+  for (int n = 0; n < WIFI_N_REDES && connection_status != WL_CONNECTED; ++n)
+  {
+    const wifi_rede_t &rede = WIFI_REDES[(redeAtual + n) % WIFI_N_REDES];
+    Serial.printf("%s '%s'", TXT_CONNECTING_TO, rede.ssid);
+    WiFi.begin(rede.ssid, rede.password);
+
+    // timeout if WiFi does not connect in WIFI_TIMEOUT ms from now
+    unsigned long timeout = millis() + WIFI_TIMEOUT;
     connection_status = WiFi.status();
-  }
-  Serial.println();
+    while ((connection_status != WL_CONNECTED) && (millis() < timeout))
+    {
+      Serial.print(".");
+      delay(50);
+      connection_status = WiFi.status();
+    }
+    Serial.println();
 
-  if (connection_status == WL_CONNECTED)
-  {
-    wifiRSSI = WiFi.RSSI(); // get WiFi signal strength now, because the WiFi
-                            // will be turned off to save power!
-    Serial.println("IP: " + WiFi.localIP().toString());
-  }
-  else
-  {
-    Serial.printf("%s '%s'\n", TXT_COULD_NOT_CONNECT_TO, WIFI_SSID);
+    if (connection_status == WL_CONNECTED)
+    {
+      redeAtual = (redeAtual + n) % WIFI_N_REDES;
+      wifiRSSI = WiFi.RSSI(); // get WiFi signal strength now, because the WiFi
+                              // will be turned off to save power!
+      Serial.println("IP: " + WiFi.localIP().toString());
+    }
+    else
+    {
+      Serial.printf("%s '%s'\n", TXT_COULD_NOT_CONNECT_TO, rede.ssid);
+      WiFi.disconnect();
+    }
   }
   return connection_status;
 } // startWiFi

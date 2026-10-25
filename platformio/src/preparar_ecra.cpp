@@ -107,7 +107,7 @@ void prepararEcra(dados_ecra_t &d, const owm_resp_onecall_t &r,
   d.aviso       = aviso(r.alerts);
   if (std::isnan(inTemp) || std::isnan(inHumidity))
   {
-    d.casa = ""; // BME280 não ligado ou leitura falhada
+    d.casa = ""; // sensor (AHT10) não ligado ou leitura falhada
   }
   else
   {

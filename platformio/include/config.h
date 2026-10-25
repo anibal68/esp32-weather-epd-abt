@@ -46,12 +46,15 @@
 
 // INDOOR ENVIRONMENT SENSOR
 // Uncomment the macro that identifies your sensor.
-#define SENSOR_BME280
+// #define SENSOR_BME280
 // #define SENSOR_BME680
+#define SENSOR_AHT10 // AHT10/AHT20 (temperatura e humidade), desde 25/10/2026
 
 // If you encounter issues with the BME280 sensor showing no data, uncomment and
 // add a small delay before reading it's value. 300ms seems to work for most people
 // #define SENSOR_INIT_DELAY_MS 300
+// o AHT10 precisa de ~40 ms depois de ligado pelo PIN_BME_PWR
+#define SENSOR_INIT_DELAY_MS 40
 
 // 3 COLOR E-INK ACCENT COLOR
 // Defines the 3rd color to be used when a 3+ color display is selected.
@@ -333,8 +336,13 @@ extern const uint8_t PIN_BME_SDA;
 extern const uint8_t PIN_BME_SCL;
 extern const uint8_t PIN_BME_PWR;
 extern const uint8_t BME_ADDRESS;
-extern const char *WIFI_SSID;
-extern const char *WIFI_PASSWORD;
+typedef struct wifi_rede
+{
+  const char *ssid;
+  const char *password;
+} wifi_rede_t;
+extern const wifi_rede_t WIFI_REDES[];
+extern const int WIFI_N_REDES;
 extern const unsigned long WIFI_TIMEOUT;
 extern const unsigned HTTP_CLIENT_TCP_TIMEOUT;
 extern const String OWM_APIKEY;
@@ -344,8 +352,9 @@ extern const String LAT;
 extern const String LON;
 extern const String CITY_STRING;
 extern const String IPMA_AREA;
-extern const char *AGENDA_PI;
-extern const uint16_t AGENDA_PORTA;
+extern const char *SERVIDOR;
+extern const char *CF_ID;
+extern const char *CF_SEGREDO;
 extern const char *TIMEZONE;
 extern const String OM_TIMEZONE;
 extern const char *TIME_FORMAT;
@@ -381,7 +390,8 @@ extern const uint32_t MIN_BATTERY_VOLTAGE;
   #error Invalid configuration. Exactly one driver board must be selected.
 #endif
 #if !(  defined(SENSOR_BME280) \
-      ^ defined(SENSOR_BME680))
+      ^ defined(SENSOR_BME680) \
+      ^ defined(SENSOR_AHT10))
   #error Invalid configuration. Exactly one sensor must be selected.
 #endif
 #if !(defined(LOCALE))

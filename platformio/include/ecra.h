@@ -46,7 +46,7 @@ typedef struct dados_ecra
   String vento;             // "18 km/h NO"
   String humidade;          // "72 %"
   String sol;               // "07:55 - 18:39"
-  String casa;              // "21\260 | 55 %" do BME280 (vazio = sem sensor)
+  String casa;              // "21\260 | 55 %" do AHT10 (vazio = sem sensor)
   // avisos do IPMA (vazio = sem avisos)
   String aviso;
   // 5 dias
@@ -56,7 +56,7 @@ typedef struct dados_ecra
   int   chuvaHora[ECRA_HORAS];       // probabilidade, 0-100 %
   String etiquetaHora[ECRA_HORAS];   // "18", "21", ...
   // rodapé
-  String estado;            // "BME não encontrado" (vazio = tudo bem)
+  String estado;            // "Sensor não encontrado" (vazio = tudo bem)
   String atualizado;        // "sáb 18:19"
   String wifi;              // "Wi-Fi bom"
   bool   wifiFraco;

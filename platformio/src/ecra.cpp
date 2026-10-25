@@ -77,7 +77,7 @@ static void desenharAgora(const dados_ecra_t &d)
   {
     if (valores[i]->isEmpty())
     {
-      continue; // "Casa" só com o BME280 ligado
+      continue; // "Casa" só com o sensor (AHT10) ligado
     }
     int y = 60 + i * 21;
     display.setFont(&FONT_9pt8b);

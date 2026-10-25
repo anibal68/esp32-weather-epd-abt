@@ -4,12 +4,11 @@
  */
 
 #include <ArduinoJson.h>
-#include <ESPmDNS.h>
-#include <HTTPClient.h>
 #include <WiFi.h>
 #include <time.h>
 #include "agenda.h"
 #include "config.h"
+#include "servidor.h"
 
 #define AGENDA_IDADE_MAX (3 * 3600) // segundos
 
@@ -53,32 +52,14 @@ bool getAgenda(std::vector<dia_agenda_t> &agenda)
   {
     return false;
   }
-  if (!MDNS.begin("estacao"))
-  {
-    Serial.println("Agenda: mDNS falhou");
-    return false;
-  }
-  IPAddress ip = MDNS.queryHost(AGENDA_PI, 3000);
-  MDNS.end();
-  if (ip == IPAddress(0, 0, 0, 0))
-  {
-    Serial.println("Agenda: " + String(AGENDA_PI) + ".local n\343o encontrado");
-    return false;
-  }
-  Serial.println("Agenda: http://" + ip.toString() + ":" + String(AGENDA_PORTA)
-                 + "/agenda.json");
-
-  WiFiClient client;
+  WiFiClientSecure client;
   HTTPClient http;
-  http.setConnectTimeout(HTTP_CLIENT_TCP_TIMEOUT);
-  http.setTimeout(HTTP_CLIENT_TCP_TIMEOUT);
-  http.useHTTP10(true);
-  http.begin(client, ip.toString(), AGENDA_PORTA, "/agenda.json");
+  pedirServidor(client, http, "/agenda.json");
   int codigo = http.GET();
   String corpo = (codigo == HTTP_CODE_OK) ? http.getString() : String();
   http.end();
-  Serial.println("  " + String(codigo) + ", " + String(corpo.length())
-                 + " bytes");
+  Serial.println("Agenda: https://" + String(SERVIDOR) + "/agenda.json "
+                 + String(codigo) + ", " + String(corpo.length()) + " bytes");
   if (codigo != HTTP_CODE_OK)
   {
     return false;

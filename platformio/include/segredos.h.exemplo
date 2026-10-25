@@ -1,4 +1,16 @@
 // Copiar para segredos.h (fora do git, ver .gitignore) e preencher.
 // O repositório é PÚBLICO: nunca pôr valores reais neste ficheiro de exemplo.
+
+// Wi-Fi: a 1.ª rede é obrigatória; a 2.ª e a 3.ª são opcionais (ex. casa da filha).
+// A estação tenta primeiro a última rede que funcionou.
 #define SEGREDO_WIFI_SSID     "nome-da-rede"
 #define SEGREDO_WIFI_PASSWORD "palavra-passe"
+// #define SEGREDO_WIFI2_SSID     "outra-rede"
+// #define SEGREDO_WIFI2_PASSWORD "palavra-passe"
+// #define SEGREDO_WIFI3_SSID     "mais-uma-rede"
+// #define SEGREDO_WIFI3_PASSWORD "palavra-passe"
+
+// Service Token "estacao" do Cloudflare Access (estacao.ablabs.win: agenda e
+// atualizações). Sem isto a agenda fica "indisponível" e não há atualizações.
+#define SEGREDO_CF_ID      "xxxxxxxx.access"
+#define SEGREDO_CF_SEGREDO "yyyyyyyy"

@@ -32,6 +32,17 @@ Repositório PÚBLICO. Wi-Fi e chaves em `platformio/src/config.cpp`: nunca faze
 
 - Desenho: `src/ecra.cpp` (só textos prontos, em Latin-1) + `src/preparar_ecra.cpp`; simulador no Pi
   `platformio/simulador/simular.sh` (PNG + procura de sobreposições) antes de gravar.
-- Agenda da Mariana: `src/agenda.cpp` procura o Pi por mDNS (`AGENDA_PI` = rpi4, `AGENDA_PORTA` 8090 no
-  `config.cpp`) e lê `agenda.json`, preparado no Pi por `~/accoes/app/agenda_estacao.py` (cron 30 min,
-  serviço do utilizador `estacao-agenda`, só rede de casa). Com mais de 3 h ou `ok: false` -> "Agenda indisponível".
+- Agenda da Mariana: `src/agenda.cpp` lê `https://estacao.ablabs.win/agenda.json` (`src/servidor.cpp`, Service Token
+  `estacao` do Cloudflare Access no `segredos.h`: `SEGREDO_CF_ID`/`SEGREDO_CF_SEGREDO`). No Pi: `~/accoes/app/agenda_estacao.py`
+  (cron 30 min) -> `~/estacao/publico/`, servido pelo serviço do utilizador `estacao-agenda` (só 127.0.0.1:8090, túnel
+  Cloudflare tipo HTTP). Com mais de 3 h ou `ok: false` -> "Agenda indisponível". Sem token o Cloudflare dá 403 (testado).
+- Wi-Fi: até 3 redes no `segredos.h` (`SEGREDO_WIFI2_*`, `SEGREDO_WIFI3_*`, ex. casa da filha); tenta primeiro a última que funcionou.
+- Sensor: AHT10 (`SENSOR_AHT10`, Adafruit AHTX0, endereço 0x38, alimentado pelo GPIO1, 40 ms de espera). Sem ele: "Sensor não encontrado".
+
+## Atualizações por Wi-Fi (OTA), desde 25/10/2026
+
+- Flash `min_spiffs.csv` (2 x 1,9 MB; firmware ~80 %). Mudar a divisão da flash só por USB (Erase Flash + .bin em 0x0).
+- Cada vez que acorda, depois da agenda: `/versao.txt` > `VERSAO_FIRMWARE` (`include/versao.h`)? descarrega `/firmware.bin`,
+  instala e reinicia. Com erro fica a versão antiga.
+- Publicar: aumentar `VERSAO_FIRMWARE`, `./compilar.sh`, `./publicar_ota.sh`. Testar sempre em casa primeiro: uma versão que
+  não ligue ao Wi-Fi só se corrige por USB.
