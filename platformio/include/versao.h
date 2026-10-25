@@ -6,6 +6,6 @@
 #ifndef __VERSAO_H__
 #define __VERSAO_H__
 
-#define VERSAO_FIRMWARE 1
+#define VERSAO_FIRMWARE 2
 
 #endif
